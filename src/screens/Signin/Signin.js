@@ -5,10 +5,12 @@ import Input from "../../components/Input";
 import { Colors } from "../../config/Colors";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { AuthMiddleware } from "../../redux/Middlewares/AuthMiddleware";
 
 const Signin = () => {
 
-
+const dispatch = useDispatch()
     const [email, setemail] = useState()
     const [name, setname] = useState()
     const [password, setpassword] = useState()
@@ -37,7 +39,7 @@ const Signin = () => {
                 </TouchableOpacity>
             </View>
 
-            <Button title={'Signin'}  />
+            <Button title={'Signin'} onPress={()=> dispatch(AuthMiddleware.login())}  />
         </View>
     )
 }

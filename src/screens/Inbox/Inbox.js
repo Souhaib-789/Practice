@@ -3,11 +3,11 @@ import {  StyleSheet, TouchableOpacity, View } from 'react-native'
 import TextComponent from "../../components/TextComponent";
 import { Colors } from "../../config/Colors";
 
-const Home = () => {
+const Inbox = () => {
 
     return (
         <View style={styles.container}>
-            <TextComponent text={'Home'} style={styles.heading} />
+            <TextComponent text={'Inbox'} style={styles.heading} />
 
         </View>
     )
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Home;
+export default Inbox;

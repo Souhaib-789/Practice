@@ -4,15 +4,12 @@ import TextComponent from "../../components/TextComponent";
 import { Colors } from "../../config/Colors";
 import Input from "../../components/Input";
 import Person from '../../assets/images/person.jpg'
-import { useNavigation } from "@react-navigation/native";
 
-const Inbox = () => {
-
-    const navigation = useNavigation()
+const Chat = () => {
 
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity style={styles.chat_item} onPress={() => navigation.navigate('Chat')}>
+            <TouchableOpacity style={styles.chat_item}>
                 <Image source={Person} style={{ width: 50, height: 50, borderRadius: 50 }} />
                 <View style={{ flex: 1, marginLeft: 10 }}>
                     <TextComponent text={'John Doe'} style={{ fontSize: 16 }} />
@@ -26,10 +23,7 @@ const Inbox = () => {
     return (
         <View style={styles.container}>
 
-            <View style={styles.initial_view}>
-                <TextComponent text={'Messages'} style={styles.heading} />
-                <Input placeholder={'Search'} search style={styles.search_input} />
-            </View>
+          
 
             <FlatList
                 data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
@@ -84,4 +78,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Inbox;
+export default Chat;

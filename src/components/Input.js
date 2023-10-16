@@ -2,13 +2,21 @@ import React from "react";
 import { StyleSheet, TextInput, View } from 'react-native'
 import { Colors } from "../config/Colors";
 import TextComponent from "./TextComponent";
+import Feather from 'react-native-vector-icons/Feather'
+
 
 const Input = (props) => {
     return (
         <View>
 
             <TextComponent text={props?.label} style={styles.label} />
-            <View style={styles.input_container}>
+            <View style={[styles.input_container , {...props?.style}]}>
+
+                {
+                    props?.search &&
+                    <Feather name='search' size={20} color={Colors.BLACK} />
+                }
+
                 <TextInput
                     placeholder={props?.placeholder}
                     value={props?.value}
@@ -24,7 +32,7 @@ const Input = (props) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.WHITE,
-     
+
     },
     label: {
         marginVertical: 10,
@@ -36,7 +44,10 @@ const styles = StyleSheet.create({
         borderColor: Colors.LIGHT_GREY,
         width: '100%',
         alignSelf: 'center',
-        padding: 5
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 5,
+        paddingHorizontal: 10
     }
 })
 

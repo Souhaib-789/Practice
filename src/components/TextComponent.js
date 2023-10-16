@@ -5,7 +5,7 @@ import { Colors } from "../config/Colors";
 
 const TextComponent = (props) => {
     return(
-       <Text style={styles.text}>{props?.text}</Text>
+       <Text style={[styles.text , props?.style]}>{props?.text}</Text>
     )
 }
 

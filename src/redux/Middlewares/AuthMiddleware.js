@@ -15,7 +15,6 @@ export const AuthMiddleware = {
             title: 'In login Catch',
             message: error?.response?.data?.message,
             type: 'Error',
-            status: error?.response?.status
           }))
         } finally {
           dispatch(hideLoading());

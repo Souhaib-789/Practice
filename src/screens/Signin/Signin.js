@@ -7,6 +7,9 @@ import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { AuthMiddleware } from "../../redux/Middlewares/AuthMiddleware";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { showAlert } from "../../redux/Actions/GeneralActions";
+import auth from '@react-native-firebase/auth';
 
 const Signin = () => {
 
@@ -14,8 +17,37 @@ const dispatch = useDispatch()
     const [email, setemail] = useState()
     const [name, setname] = useState()
     const [password, setpassword] = useState()
-    const [confirmPassword, setconfirmPassword] = useState()
     const navigation = useNavigation()
+
+    const onPressLogin = async () => {
+        if (!email) {
+            dispatch(showAlert({message: 'Please enter email !'}))
+        } 
+        else if(!password){
+          dispatch(showAlert({message: 'Please enter passsword !'}))
+        } else {
+           
+            // dispatch(showLoading())
+            await auth()
+                .signInWithEmailAndPassword(email, password)
+                .then((res) => { 
+                    let token = res?.user?.uid
+                    console.log(token);
+                    AsyncStorage.setItem('@token', token)
+                    AsyncStorage.setItem('@userx', JSON.stringify(res?.user))
+                    dispatch(AuthMiddleware.login())
+
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    dispatch(showAlert({message: 'email or password is invalid!'}))
+                }).finally(()=> {
+                //   dispatch(hideLoading())
+                })
+        }
+    }
+
+
     return (
         <View style={styles.container}>
             <TextComponent text={'Signin'} style={styles.heading} />
@@ -39,7 +71,7 @@ const dispatch = useDispatch()
                 </TouchableOpacity>
             </View>
 
-            <Button title={'Signin'} onPress={()=> dispatch(AuthMiddleware.login())}  />
+            <Button title={'Signin'} onPress={onPressLogin}  />
         </View>
     )
 }

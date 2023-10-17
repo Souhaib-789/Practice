@@ -25,10 +25,10 @@ const hideLoading = () => {
   };
 };
 
-const extraContent = payload => {
+const userInfo = payload => {
   return {
-    type: ActionTypes.EXTRA_CONTENT,
+    type: ActionTypes.USER_INFO,
     payload,
   };
 };
-export { showLoading, hideLoading, showAlert, hideAlert, extraContent };
+export { showLoading, hideLoading, showAlert, hideAlert, userInfo };

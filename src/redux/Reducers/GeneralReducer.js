@@ -4,7 +4,7 @@ let initialState = {
   showAlert: false,
   alertOptions: null,
   loading: false,
-  extraContent: []
+  userInfo: []
 };
 
 const GeneralReducer = (state = initialState, action) => {
@@ -25,8 +25,8 @@ const GeneralReducer = (state = initialState, action) => {
       state = { ...state, loading: false };
       break;
 
-    case ActionTypes.EXTRA_CONTENT:
-      state = { ...state, extraContent: action.payload };
+    case ActionTypes.USER_INFO:
+      state = { ...state, userInfo: action.payload };
       break;
 
     default:

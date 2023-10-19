@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import {  StyleSheet, TouchableOpacity, View } from 'react-native'
 import TextComponent from "../../components/TextComponent";
 import { Colors } from "../../config/Colors";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+const userData = useSelector(state => state.AuthReducer.user)
 
     return (
         <View style={styles.container}>

@@ -9,36 +9,37 @@ import { useNavigation } from "@react-navigation/native";
 const Inbox = () => {
 
     const navigation = useNavigation()
-const messages = [
-    {
-        id: 1,
-        name: 'John Doe',
-    },
-    {
-        id: 2,
-        name: 'Harry Potter',
-    },
-    {
-        id: 3,
-        name: 'Sam Wilson',
-    },
-    {
-        id: 4,
-        name: 'Sara David',
-    },
-    {
-        id: 5,
-        name: 'Henry Kelvin',
-    },
-    {
-        id: 6,
-        name: 'Amy Jackson',
-    },
-]
+    const messages = [
+        {
+            id: 1,
+            name: 'John Doe',
+        },
+        {
+            id: 2,
+            name: 'Harry Potter',
+        },
+        {
+            id: 3,
+            name: 'Sam Wilson',
+        },
+        {
+            id: 4,
+            name: 'Sara David',
+        },
+        {
+            id: 5,
+            name: 'Henry Kelvin',
+        },
+        {
+            id: 6,
+            name: 'Amy Jackson',
+        },
+    ]
+
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity style={styles.chat_item} onPress={() => navigation.navigate('Chat' , { data: item?.name})}>
-                <Image source={Person} style={{ width: 50, height: 50, borderRadius: 50 }} />
+            <TouchableOpacity style={styles.chat_item} onPress={() => navigation.navigate('Chat', { data: item?.name })}>
+                <Image source={Person} style={{ width: 45, height: 45, borderRadius: 50 }} />
                 <View style={{ flex: 1, marginLeft: 10 }}>
                     <TextComponent text={item?.name} style={{ fontSize: 16 }} />
                     <TextComponent text={'Hello , okay at 11 PM'} style={styles.span} />

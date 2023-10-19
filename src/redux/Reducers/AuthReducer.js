@@ -3,7 +3,6 @@ import ActionTypes from '../Actions/ActionTypes';
 let initialState = {
   isLogin: false,
   user: null,
-  blisses: []
 };
 
 const AuthReducer = (state = initialState, action) => {
@@ -20,9 +19,6 @@ const AuthReducer = (state = initialState, action) => {
       state = { user: null, isLogin: false };
       break;
 
-    case ActionTypes.GET_MOREDATA:
-      state = { ...state, blisses: action.payload };
-      break;
 
     default:
       break;

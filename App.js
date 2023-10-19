@@ -7,7 +7,7 @@ import store from './src/redux/Store'
 import { Provider, useDispatch, useSelector } from "react-redux";
 import AppStack from "./src/navigations/AppStack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { login } from "./src/redux/Actions/AuthAction";
+import { login, userData } from "./src/redux/Actions/AuthAction";
 import { Snackbar } from "react-native-paper";
 import { Colors } from "./src/config/Colors";
 import { hideAlert, userInfo } from "./src/redux/Actions/GeneralActions";
@@ -33,7 +33,7 @@ const App = () => {
         dispatch(login(true))
         const userdata = JSON.parse(user_data)
         console.log('====================>>>>>>>>>>>', userdata);
-        // dispatch(userInfo(userdata))
+        dispatch(userData(userdata))
       } else {
         dispatch(login(false))
       }

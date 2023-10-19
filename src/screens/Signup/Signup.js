@@ -4,14 +4,71 @@ import TextComponent from "../../components/TextComponent";
 import Input from "../../components/Input";
 import { Colors } from "../../config/Colors";
 import Button from "../../components/Button";
+import { showAlert } from "../../redux/Actions/GeneralActions";
+import auth from '@react-native-firebase/auth';
+import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import firestore from '@react-native-firebase/firestore';
 
 const Signup = () => {
 
-
+const dispatch = useDispatch();
+const navigation = useNavigation();
     const [email, setemail] = useState()
     const [name, setname] = useState()
     const [password, setpassword] = useState()
     const [confirmPassword, setconfirmPassword] = useState()
+
+    const onPressSignup =   () => {
+        if (!name) {
+          dispatch(showAlert({message: 'Please enter your name'}));
+        }
+        else if (!email) {
+          dispatch(showAlert({message: 'Please enter email address'}));
+        }
+        else if (!password) {
+          dispatch(showAlert({message: 'Please enter password'}));
+        }
+        else if (!confirmPassword) {
+          dispatch(showAlert({message: 'Please confirm your entered password'}));
+        } else if (password !== confirmPassword) {
+          dispatch(showAlert({message: 'Confirm password does not match'}));
+        } else {
+        //   dispatch(showLoading());
+    
+           auth()
+            .createUserWithEmailAndPassword(email, confirmPassword)
+            .then((e) => {
+              const user = e.user;
+            user.updateProfile({displayName: name , photoURL: null})
+              dispatch(showAlert({message: 'Your account has been created !'}));
+              console.log('User account created !');
+    
+              firestore()
+                .collection('Users')
+                .doc(auth().currentUser.uid)
+                .set({
+                  chats : [],
+                });
+    
+               navigation.navigate('Signin');
+            })
+            .catch(error => {
+              if (error.code === 'auth/email-already-in-use') {
+                dispatch(showAlert({message: 'That email address is already in use!'}));
+              }
+              else if (error.code === 'auth/invalid-email') {
+                dispatch(showAlert({message: 'That email address is invalid!'}));
+              }else{
+                dispatch(showAlert({message: 'Something went wrong'}))
+                console.error(error);
+              }
+              
+            })
+            // .finally(() => dispatch(hideLoading()));
+        }
+      };
+
 
     return (
         <View style={styles.container}>
@@ -42,7 +99,7 @@ const Signup = () => {
                 onChangeText={(e) => setconfirmPassword(e)}
             />
 
-            <Button title={'Signup'} />
+            <Button title={'Signup'} onPress={onPressSignup} />
 
 
         </View>

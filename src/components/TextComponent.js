@@ -5,7 +5,7 @@ import { Colors } from "../config/Colors";
 
 const TextComponent = (props) => {
     return(
-       <Text style={[styles.text , props?.style]}>{props?.text}</Text>
+       <Text numberOfLines={props?.numberOfLines} style={[styles.text , props?.style]}>{props?.text}</Text>
     )
 }
 

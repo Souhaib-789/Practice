@@ -1,0 +1,37 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Comfortaa-Bold.ttf",
+      "sha1": "160e0e5a1010cd45ea124f08a894156e02236551"
+    },
+    {
+      "path": "assets/fonts/Comfortaa-Light.ttf",
+      "sha1": "ed0ebd5d2d4f12b0b8ad23bfee5c5ef692c713c7"
+    },
+    {
+      "path": "assets/fonts/Comfortaa-Medium.ttf",
+      "sha1": "fda057b8b92cfb9c4c65b8151cee56a089390526"
+    },
+    {
+      "path": "assets/fonts/Comfortaa-Regular.ttf",
+      "sha1": "fb5a258452921a7f710d1913777ae6f48a0b6089"
+    },
+    {
+      "path": "assets/fonts/Comfortaa-SemiBold.ttf",
+      "sha1": "48890a29aafcb54748ace8dadff63a2dc261fe6c"
+    },
+    {
+      "path": "assets/fonts/Manjari-Bold.ttf",
+      "sha1": "23a9ead15d5eea0e772eeff73c8a095b0e0fb37b"
+    },
+    {
+      "path": "assets/fonts/Manjari-Regular.ttf",
+      "sha1": "ea4b81ea0faac0825f1c79a5c6c0bf69529cb06b"
+    },
+    {
+      "path": "assets/fonts/Manjari-Thin.ttf",
+      "sha1": "65cffba2f433a990900b8e4ad76588f641726a3a"
+    }
+  ]
+}

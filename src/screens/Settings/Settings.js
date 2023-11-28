@@ -90,7 +90,8 @@ const Setting = () => {
 const styles = StyleSheet.create({
     heading: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: Colors.PRIMARY
     },
     flex: {
         flexDirection: 'row',

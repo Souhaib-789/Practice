@@ -40,7 +40,8 @@ const Input = (props) => {
                     placeholder={props?.placeholder}
                     value={props?.value}
                     onChangeText={props?.onChangeText}
-                    style={{ width: '83%', }}
+                    placeholderTextColor={Colors.DDGREY}
+                    style={{ width: '83%', color: Colors.BLACK }}
                 />
             }
             {

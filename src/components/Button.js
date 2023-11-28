@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.WHITE,
-        fontWeight: "bold"
-    }
+        fontFamily: 'Comfortaa-Bold'    }
 })
 
 export default Button;

@@ -5,16 +5,17 @@ import { Colors } from "../../config/Colors";
 import { useSelector } from "react-redux";
 import Button from "../../components/Button";
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
     const userData = useSelector(state => state.AuthReducer.user)
-
+    const navigation = useNavigation()
     const renderSuggestionItem = ({ item, index }) => {
         return (
             <View style={{ alignItems: 'center', borderRadius: 12, backgroundColor: Colors.WHITE, elevation: 5, width: 130, height: 160, marginHorizontal: 15, marginVertical: 10 , paddingTop: 15, }}>
                 <Image source={require('../../assets/images/person.jpg')} style={{ width: 63, height: 63, borderRadius: 100 }} />
                 <TextComponent text={'Harry Potter'} style={{ fontSize: 14, color: Colors.BLACK, marginTop: 10, fontFamily: 'Comfortaa-Regular' }} />
-                <Button title={'Add Friend'} button_text_style={{ fontSize: 11 }} style={{  width: 80, paddingVertical: 4, borderRadius: 5, backgroundColor: Colors.PRIMARY, marginTop: 15 }} />
+                <Button onPress={()=> navigation.navigate('Profile')} title={'Add Friend'} button_text_style={{ fontSize: 11 }} style={{  width: 80, paddingVertical: 4, borderRadius: 5, backgroundColor: Colors.PRIMARY, marginTop: 15 }} />
             </View>
         )
     }

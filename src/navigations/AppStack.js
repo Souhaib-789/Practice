@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabs from "./BottomTabs";
 import Inbox from "../screens/Inbox/Inbox";
 import Chat from "../screens/Inbox/Chat";
+import Profile from "../screens/Profile/Profile";
 
 const AppStack = () => {
 
@@ -16,6 +17,7 @@ const AppStack = () => {
             <Stack.Screen name="BottomTabs" component={BottomTabs} />
             <Stack.Screen name="Inbox" component={Inbox} />
             <Stack.Screen name="Chat" component={Chat} />
+            <Stack.Screen name="Profile" component={Profile} />
 
         </Stack.Navigator>
     )

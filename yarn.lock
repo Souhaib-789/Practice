@@ -5957,6 +5957,11 @@ react-native-screens@^3.25.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-theme-switch-animation@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-theme-switch-animation/-/react-native-theme-switch-animation-0.6.0.tgz#4fa99d572ee683dbdfc9c3b2f088f77a1ecd113b"
+  integrity sha512-XC6xb1J6Pgq4XQFsq6KdxJugRHjwsj04qTDh9rZdi1mkNOy9QKtz7wCQHoK6q8CBZtF3R/sergCw9wZhIRXK3Q==
+
 react-native-typing-animation@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/react-native-typing-animation/-/react-native-typing-animation-0.1.7.tgz#8f2cf08d9400ae543a110292eb7d71523dda5528"

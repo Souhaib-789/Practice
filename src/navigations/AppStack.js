@@ -7,6 +7,7 @@ import BottomTabs from "./BottomTabs";
 import Inbox from "../screens/Inbox/Inbox";
 import Chat from "../screens/Inbox/Chat";
 import Profile from "../screens/Profile/Profile";
+import OptionDetail from "../screens/Settings/OptionDetail";
 
 const AppStack = () => {
 
@@ -18,6 +19,8 @@ const AppStack = () => {
             <Stack.Screen name="Inbox" component={Inbox} />
             <Stack.Screen name="Chat" component={Chat} />
             <Stack.Screen name="Profile" component={Profile} />
+
+            <Stack.Screen name="OptionDetail" component={OptionDetail} />
 
         </Stack.Navigator>
     )

@@ -9,6 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from "@react-navigation/native";
 import switchTheme from 'react-native-theme-switch-animation';
+import { Fonts } from "../../config/Fonts";
 
 const Setting = () => {
     const userData = useSelector(state => state.AuthReducer.user)
@@ -80,8 +81,8 @@ const Setting = () => {
                     {item?.icon}
                 </TouchableOpacity>
                 <View>
-                    <TextComponent text={item?.name} style={{ fontSize: 15, color: theme ? Colors.BLACK : Colors.WHITE }} />
-                    <TextComponent text={item?.info} style={{ fontSize: 12, color: Colors.GREY }} />
+                    <TextComponent text={item?.name} style={{ fontSize: 15, color: theme ? Colors.BLACK : Colors.WHITE , fontFamily: Fonts.Medium}} />
+                    <TextComponent text={item?.info} style={{ fontSize: 12, color: Colors.GREY, fontFamily: Fonts.Regular }} />
                 </View>
             </TouchableOpacity>
         )
@@ -111,7 +112,7 @@ const Setting = () => {
 const styles = StyleSheet.create({
     heading: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: Fonts.Bold,
         color: Colors.PRIMARY
     },
     flex: {
@@ -121,7 +122,8 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 13,
         color: Colors.GREY,
-        marginTop: 5
+        marginTop: 5,
+        fontFamily: Fonts.Regular,
     },
     container: {
         backgroundColor: Colors.WHITE,

@@ -20,6 +20,7 @@
     "@react-navigation/native-stack": "^6.9.14",
     "react": "18.2.0",
     "react-native": "0.71.13",
+    "react-native-animatable": "^1.4.0",
     "react-native-gifted-chat": "^2.4.0",
     "react-native-masonry-list": "^2.16.1",
     "react-native-paper": "^5.10.6",

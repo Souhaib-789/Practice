@@ -6,6 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 import TextComponent from "./TextComponent";
 import { Colors } from "../config/Colors";
 import Person from '../assets/images/person.jpg'
+import { Fonts } from "../config/Fonts";
+
 
 const Header = (props) => {
 
@@ -38,6 +40,7 @@ const Header = (props) => {
 const styles = StyleSheet.create({
     heading: {
         fontSize: 18,
+        fontFamily: Fonts.Regular,
     },
     profile_image: { width: 35, height: 35, borderRadius: 50 },
     flex: {

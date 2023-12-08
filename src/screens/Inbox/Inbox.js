@@ -7,6 +7,7 @@ import Person from '../../assets/images/person.jpg'
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar, Animated, Dimensions, Easing, SafeAreaViewBase, SafeAreaView } from 'react-native';
 import { faker } from '@faker-js/faker';
+import { Fonts } from "../../config/Fonts";
 
 const Inbox = () => {
     const navigation = useNavigation()
@@ -45,7 +46,7 @@ const Inbox = () => {
             <TouchableOpacity style={styles.chat_item} onPress={() => navigation.navigate('Chat', { data: item?.name })}>
                 <Image source={item?.image ? { uri: item?.image } : Person} style={{ width: 45, height: 45, borderRadius: 50 }} />
                 <View style={{ flex: 1, marginLeft: 10 }}>
-                    <TextComponent text={item?.name} style={{ fontSize: 16 }} />
+                    <TextComponent text={item?.name} style={{ fontSize: 16 , fontFamily: Fonts.Regular }} />
                     <TextComponent text={'Hello , okay at 11 PM'} style={styles.span} />
                 </View>
                 <View style={{ alignItems: 'flex-end', gap: 6 }}>
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: 25,
         color: Colors.WHITE,
-        fontWeight: 'bold'
+      fontFamily: Fonts.Bold,
     },
     flex: {
         flexDirection: 'row',
@@ -128,6 +129,7 @@ const styles = StyleSheet.create({
     span: {
         fontSize: 12,
         color: Colors.DGREY,
+        fontFamily: Fonts.Regular,
     }
 })
 

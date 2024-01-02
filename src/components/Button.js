@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Colors } from "../config/Colors";
+import { Fonts } from "../config/Fonts";
 
 
 const Button = (props) => {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.WHITE,
-        fontFamily: 'Comfortaa-Bold'    }
+        fontFamily: Fonts?.Bold    }
 })
 
 export default Button;

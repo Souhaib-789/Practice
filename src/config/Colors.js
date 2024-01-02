@@ -9,6 +9,7 @@ HIGHLIGHT: '#7CFC00',
     DDGREY: '#808080',
     GREY: 'rgba(211,211,211, 0.9)',
     LIGHT_GREY: 'rgba(211,211,211, 0.5)',
-    LLIGHT_GREY: 'rgba(211,211,211, 0.2)'
+    LLIGHT_GREY: 'rgba(211,211,211, 0.3)',
+    LLLIGHT_GREY: 'rgba(211,211,211, 0.2)'
 
 }

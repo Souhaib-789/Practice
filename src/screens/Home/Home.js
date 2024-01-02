@@ -6,33 +6,34 @@ import { useSelector } from "react-redux";
 import Button from "../../components/Button";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from "@react-navigation/native";
+import { Fonts } from "../../config/Fonts";
 
 const Home = () => {
     const userData = useSelector(state => state.AuthReducer.user)
     const navigation = useNavigation()
     const renderSuggestionItem = ({ item, index }) => {
         return (
-            <View style={{ alignItems: 'center', borderRadius: 12, backgroundColor: Colors.WHITE, elevation: 5, width: 130, height: 160, marginHorizontal: 15, marginVertical: 10 , paddingTop: 15, }}>
+            <View style={{ alignItems: 'center', borderRadius: 12, backgroundColor: Colors.WHITE, elevation: 5, width: 130, height: 160, marginHorizontal: 15, marginVertical: 10, paddingTop: 15, }}>
                 <Image source={require('../../assets/images/person.jpg')} style={{ width: 63, height: 63, borderRadius: 100 }} />
-                <TextComponent text={'Harry Potter'} style={{ fontSize: 14, color: Colors.BLACK, marginTop: 10, fontFamily: 'Comfortaa-Regular' }} />
-                <Button onPress={()=> navigation.navigate('Profile')} title={'Add Friend'} button_text_style={{ fontSize: 11 }} style={{  width: 80, paddingVertical: 4, borderRadius: 5, backgroundColor: Colors.PRIMARY, marginTop: 15 }} />
+                <TextComponent text={'Harry Potter'} style={{ fontSize: 13, color: Colors.BLACK, marginTop: 10, fontFamily: Fonts?.Regular }} />
+                <Button onPress={() => navigation.navigate('Profile')} title={'Add Friend'} button_text_style={{ fontSize: 10 }} style={{ width: 80, paddingVertical: 5, borderRadius: 5, backgroundColor: Colors.PRIMARY, marginTop: 15 }} />
             </View>
         )
     }
 
     const renderStoriesItem = ({ item, index }) => {
         return (
-            <View style={{ alignItems: 'center', marginHorizontal: 8, marginVertical: 10 , gap: 5 }}>
-                <TouchableOpacity style={{ borderRadius: 100, borderColor: index == 0 ? 'transparent' : Colors.HIGHLIGHT, borderWidth: 1.5 }}>
-                    <Image source={index == 0 ? require('../../assets/images/avatar.png')  : require('../../assets/images/person.jpg')} style={{ width: 60, height: 60, borderRadius: 100,  }} />
+            <View style={{ alignItems: 'center', marginHorizontal: 8, marginVertical: 10, gap: 5 }}>
+                <TouchableOpacity style={{ borderRadius: 100, borderColor: index == 0 ? 'transparent' : Colors.HIGHLIGHT, borderWidth: index % 2 == 0 ? 1 : 0 }}>
+                    <Image source={index == 0 ? require('../../assets/images/avatar.png') : require('../../assets/images/person.jpg')} style={{ width: 60, height: 60, borderRadius: 100, }} />
                 </TouchableOpacity>
                 {
                     index == 0 &&
-                <TouchableOpacity style={{position: "absolute", top: 46, right: 2 }}>
-                    <Ionicons name="add-circle" size={20} color={Colors.PRIMARY} />
-                </TouchableOpacity>
+                    <TouchableOpacity style={{ position: "absolute", top: 46, right: 2 }}>
+                        <Ionicons name="add-circle" size={20} color={Colors.PRIMARY} />
+                    </TouchableOpacity>
                 }
-                <TextComponent text={index == 0 ? 'Your Story' : 'Harry Potter'} numberOfLines={1} style={{ fontSize: 10, width: 50, color: Colors.BLACK, alignSelf: 'center' , fontFamily: 'Comfortaa-Regular'}} />
+                <TextComponent text={index == 0 ? 'Your Story' : 'Harry Potter'} numberOfLines={1} style={{ fontSize: 10, width: 50, color: Colors.BLACK, alignSelf: 'center', fontFamily: Fonts?.Regular }} />
             </View>
         )
     }
@@ -41,15 +42,16 @@ const Home = () => {
 
         <View style={styles.container}>
 
-            <TouchableOpacity style={{ borderRadius: 50, padding: 5, backgroundColor: Colors.WHITE, elevation: 3, alignSelf: 'flex-end' }}>
+            <TouchableOpacity style={{ borderRadius: 50, padding: 5, backgroundColor: Colors.WHITE, elevation: 3, position: 'absolute', right: 20, top: 20 }}>
                 <Ionicons name="notifications-outline" size={20} color={Colors.BLACK} />
             </TouchableOpacity>
 
-            <TextComponent text={'Hey , Alex !'} style={styles.greeting} />
-            <TextComponent text={'Enjoy Seamless Conversations'} style={styles.greeting_text} />
-            <View style={{ backgroundColor: Colors.PRIMARY, borderRadius: 20, marginVertical: 5 }}>
-                <Image source={require('../../assets/images/main.png')} style={{ width: 160, height: 160, alignSelf: 'center' }} />
+            <View style={styles.flex}>
+                <Image source={require('../../assets/images/avatar.png')} style={{ width: 35, height: 35, borderRadius: 100 , marginBottom: 5 , marginRight: 10}} />
+            <TextComponent text={`Hey , ${userData?.displayName} !`} style={styles.greeting} />
             </View>
+            <TextComponent text={'Enjoy Seamless Conversations with Chatify'} style={styles.greeting_text} />
+            <Image source={require('../../assets/images/main.png')} style={{ width: 160, height: 160, alignSelf: 'center' }} />
 
             <TextComponent text={'Stories'} style={styles.heading} />
             <FlatList
@@ -77,18 +79,20 @@ const Home = () => {
 const styles = StyleSheet.create({
     heading: {
         fontSize: 17,
-        fontFamily: 'Comfortaa-Bold',
+        fontFamily: Fonts.SemiBold,
         marginTop: 10
     },
     greeting: {
-        fontSize: 20,
+        fontSize: 18,
         color: Colors.DDGREY,
-        fontFamily: 'Comfortaa-SemiBold'
+        fontFamily: Fonts.Regular
     },
     greeting_text: {
         fontSize: 20,
         marginBottom: 20,
-        fontFamily: 'Comfortaa-Medium'
+        width: '80%',
+        lineHeight: 30,
+        fontFamily: Fonts.SemiBold
     },
     flex: {
         flexDirection: 'row',

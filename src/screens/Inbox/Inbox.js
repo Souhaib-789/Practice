@@ -43,7 +43,7 @@ const Inbox = () => {
 
         return (
             // <Animated.View>
-            <TouchableOpacity style={styles.chat_item} onPress={() => navigation.navigate('Chat', { data: item?.name })}>
+            <TouchableOpacity style={styles.chat_item} onPress={() => navigation.navigate('Chat', { data: item })}>
                 <Image source={item?.image ? { uri: item?.image } : Person} style={{ width: 50, height: 50, borderRadius: 50 }} />
                 <View style={{ flex: 1, marginLeft: 10 }}>
                     <TextComponent text={item?.name} style={{ fontSize: 14 , fontFamily: Fonts?.SemiBold }} />

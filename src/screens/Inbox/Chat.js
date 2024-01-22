@@ -1,116 +1,108 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { FlatList, Image, StyleSheet, TouchableOpacity, View, Text, ActivityIndicator } from 'react-native'
+import React, { useState } from "react";
+import { View, StyleSheet, FlatList, Image, TextInput, TouchableOpacity } from "react-native";
 import TextComponent from "../../components/TextComponent";
+import Header from "../../components/Header";
+import Avatar from "../../assets/images/avatar.png";
+import perfil from "../../assets/images/person.jpg";
+import moment from "moment";
+import Icon, { IconTypes } from "../../components/Icon";
 import { Colors } from "../../config/Colors";
-import Input from "../../components/Input";
-import Person from '../../assets/images/person.jpg'
-import { GiftedChat, Bubble } from 'react-native-gifted-chat'
-import Header from '../../components/Header';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import ListEmptyComponent from '../../components/ListEmptyComponent';
-import Avatar from '../../assets/images/avatar.png'
-import { Fonts } from '../../config/Fonts';
-import moment from 'moment';
+import { Fonts } from "../../config/Fonts";
 
 const Chat = (props) => {
 
     const routeData = props?.route?.params?.data
-    const user = { id: 2 }
-    const [messages, setMessages] = useState([])
+    const user = { id: 1 }
+    const [message, setMessage] = useState(null)
+    const [loader, setLoader] = useState(false)
+    const [refreshing, setRefreshing] = useState(false)
 
-    const ChatList = [
+    const [ChatList, setChatList] = useState([
         {
             id: 1,
-            message: 'Hello developer',
+            message: 'Oh , Thats great Thank you ',
             type: 'text',
             createdAt: new Date(),
             user: {
-                id: 2,
-                name: 'React Native',
-                avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.fotor.com%2Ffeatures%2Fremove-filter-from-photo%2F&psig=AOvVaw2FTVNQo2BVqw52vzs3CwAH&ust=1697623564250000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjSmt_q_IEDFQAAAAAdAAAAABAD',
+                id: 1,
             },
         },
         {
             id: 2,
-            message: 'Hii Tester',
+            message: 'Yeah sure , You should drink corn soup , and avoid eating ice-cream and drinking juices',
             createdAt: new Date(),
             type: 'text',
             user: {
-                id: 1,
-                name: 'React Native',
-                avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.fotor.com%2Ffeatures%2Fremove-filter-from-photo%2F&psig=AOvVaw2FTVNQo2BVqw52vzs3CwAH&ust=1697623564250000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjSmt_q_IEDFQAAAAAdAAAAABAD',
+                id: 2,
             },
         },
         {
             id: 3,
-            message: 'Did you completed the task ?',
+            message: "I'm feeling very cold , can you suggest anything that can releif me?",
             type: 'text',
             createdAt: new Date(),
             user: {
-                id: 2,
-                name: 'React Native',
-                avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.fotor.com%2Ffeatures%2Fremove-filter-from-photo%2F&psig=AOvVaw2FTVNQo2BVqw52vzs3CwAH&ust=1697623564250000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjSmt_q_IEDFQAAAAAdAAAAABAD',
+                id: 1,
             },
         },
         {
             id: 4,
-            message: 'I want it right now ..',
+            message: 'Hii ! Andrew how are you feeling today ?',
             type: 'text',
             createdAt: new Date(),
             user: {
                 id: 2,
-                name: 'React Native',
-                avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.fotor.com%2Ffeatures%2Fremove-filter-from-photo%2F&psig=AOvVaw2FTVNQo2BVqw52vzs3CwAH&ust=1697623564250000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjSmt_q_IEDFQAAAAAdAAAAABAD',
             },
         },
 
-    ]
-
-    // useEffect(() => {
-    //     setMessages([
-    //         {
-    //             _id: 1,
-    //             text: 'Hello developer',
-    //             createdAt: new Date(),
-    //             user: {
-    //                 _id: 2,
-    //                 name: 'React Native',
-    //                 avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.fotor.com%2Ffeatures%2Fremove-filter-from-photo%2F&psig=AOvVaw2FTVNQo2BVqw52vzs3CwAH&ust=1697623564250000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjSmt_q_IEDFQAAAAAdAAAAABAD',
-    //             },
-    //         },
-    //     ])
-    // }, [])
+    ])
 
     const renderChatItem = ({ item }) => {
-        let profile_image = item?.user?.id == user?.id ? null : item?.user?.avatar
-        if (item?.user?.id == user?.id) {
+        if (item?.user?.id != user?.id) {
             return (
-                <View style={styles.user_chat_item}>
-                    <TextComponent text={item?.message} style={{ fontSize: 14, fontFamily: Fonts?.Regular }} />
+                <View style={styles.healthbot_main_chat_item}>
+                    <Image source={perfil ? perfil : Avatar} style={styles.bot_image} />
+                    <View>
+                        <View style={styles.healthbot_chat_item}>
+                            <TextComponent text={item?.message} style={styles.message} />
+                        </View>
+                        <TextComponent text={moment(item?.createdAt).fromNow()} style={styles.chat_time} />
+                    </View>
                 </View>
             );
         } else {
             return (
-                <View style={styles.person_chat_item}>
-                    <Image source={profile_image ? { uri: profile_image } : Avatar} style={styles.profile_image} />
-                    <View style={styles.chat_container}>
-                        <TextComponent style={styles.chat_text} text={item?.message} />
-                        {/* <TextComponent style={styles.chat_time} text={moment(item?.createdAt).format('hh:mm A')} /> */}
+                <View style={styles.person_main_chat_item}>
+                    <View>
+                        <View style={styles.person_chat_item}>
+                            <TextComponent text={item?.message} style={[styles.message, { color: Colors?.WHITE }]} />
+                        </View>
+                        <TextComponent text={moment(item?.createdAt).fromNow()} style={[styles.chat_time, { alignSelf: 'flex-start' }]} />
                     </View>
+                    <Image source={perfil ? perfil : Avatar} style={styles.bot_image} resizeMode={'cover'} />
                 </View>
             );
         }
     };
 
+    const onSendMessage = () => {
+        let copy_arr = []
+        copy_arr.push({
+            message: message,
+            type: 'text',
+            createdAt: new Date(),
+            user: {
+                id: 1,
+            },
+        })
+        setChatList([...copy_arr, ...ChatList])
+        setMessage(null)
+        setRefreshing(!refreshing)
+    }
+
     return (
-        <View style={styles.container}>
-
-            <Header title={routeData} backIcon profile />
-            <View style={{ padding: 5, flex: 1 }}>
-
-            </View>
-
+        <View style={styles.Container}>
+            <Header title={routeData?.name} backIcon />
             <FlatList
                 style={{ flex: 1 }}
                 showsVerticalScrollIndicator={false}
@@ -118,76 +110,98 @@ const Chat = (props) => {
                 keyExtractor={(item, index) => index?.toString()}
                 renderItem={renderChatItem}
                 inverted={ChatList.length > 0 ? true : false}
-                // onEndReachedThreshold={0.6}
-                // onEndReached={() => OnEndReached()}
-                ListEmptyComponent={<ListEmptyComponent title={'messages'} />}
-            // ListFooterComponent={ <ActivityIndicator size={'large'} color={Colors.PRIMARY} /> }
             />
+
+            <View style={styles.input_container}>
+                <TextInput
+                    placeholder={'Type a message'}
+                    placeholderTextColor={Colors.DDGREY}
+                    value={message}
+                    onChangeText={(e) => setMessage(e)}
+                    style={styles.input}
+                    // numberOfLines={message?.length > 36 ? 2 : 1}
+                />
+
+                <TouchableOpacity onPress={onSendMessage}>
+                    <Icon name={'send'} type={IconTypes.Ionicons} size={22} color={Colors.PRIMARY} />
+                </TouchableOpacity>
+            </View>
+
 
         </View>
     )
 }
 
+export default Chat;
+
 const styles = StyleSheet.create({
-    heading: {
-        fontSize: 18,
-        color: Colors.PRIMARY,
-        fontWeight: 'bold'
-    },
-    flex: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    container: {
-        backgroundColor: Colors.WHITE,
+    Container: {
         flex: 1,
-    },
-    initial_view: {
-        padding: 20,
-        backgroundColor: Colors.LLIGHT_GREY,
-        borderBottomEndRadius: 25,
-        borderBottomLeftRadius: 25,
-    },
-    search_input: {
-        borderRadius: 15,
         backgroundColor: Colors.WHITE,
-        borderWidth: 0,
-        elevation: 5,
-        marginBottom: 10
+        paddingHorizontal: 15
     },
-    chat_item: {
-        paddingVertical: 8,
-        paddingHorizontal: 15,
+    bot_image: {
+        width: 30,
+        height: 30,
+        borderRadius: 50,
+    },
+    message: {
+        fontSize: 14,
+        fontFamily: Fonts?.Regular
+    },
+    person_main_chat_item: {
+        paddingVertical: 3,
+        justifyContent: 'flex-end',
+        alignSelf: 'flex-end',
         flexDirection: 'row',
-        alignItems: 'center',
-        borderBottomColor: Colors.LLIGHT_GREY,
-        borderBottomWidth: 1,
-        marginVertical: 10
+        width: '65%',
     },
-    span: {
-        fontSize: 12,
-        color: Colors.DGREY,
-    },
-    user_chat_item: {
-        backgroundColor: Colors.LLIGHT_GREY,
-        width: '60%',
-        padding: 15,
-        marginVertical: 8,
-        marginHorizontal: 10,
-        borderTopRightRadius: 15,
-        borderBottomRightRadius: 15,
-        borderBottomLeftRadius: 15,
-    },
+
     person_chat_item: {
-        backgroundColor: Colors.LLIGHT_GREY,
-        width: '60%',
-        padding: 15,
-        marginVertical: 8,
-        marginHorizontal: 10,
+        backgroundColor: Colors.PRIMARY,
+        padding: 14,
+        borderTopLeftRadius: 15,
+        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        marginRight: 10,
+    },
+    healthbot_main_chat_item: {
+        paddingVertical: 8,
+        flexDirection: 'row',
+        width: '70%',
+        marginVertical: 5,
+    },
+
+    healthbot_chat_item: {
+        backgroundColor: Colors.LIGHT_GREY,
+        padding: 14,
+        marginLeft: 10,
         borderTopRightRadius: 15,
         borderBottomRightRadius: 15,
         borderBottomLeftRadius: 15,
+    },
+    chat_time: {
+        fontSize: 10,
+        color: Colors.DDGREY,
+        alignSelf: 'flex-end',
+        marginTop: 5,
+
+    },
+    input: {
+        width: '88%',
+        fontSize: 15,
+        fontFamily: Fonts.Regular,
+        color: Colors.BLACK
+    },
+    input_container: {
+        borderRadius: 10,
+        width: '100%',
+        marginVertical: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 8,
+        padding: 5,
+        backgroundColor: Colors.WHITE,
+        elevation: 5,
     },
 })
-
-export default Chat;

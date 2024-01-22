@@ -48,7 +48,7 @@ const BottomTabs = () => {
 
         return (
             <TouchableOpacity onPress={onPress} activeOpacity={1} style={styles.container}>
-                <Animatable.View ref={viewRef} duration={1000} style={styles.container}>
+                <Animatable.View ref={viewRef} duration={700} style={styles.container}>
                     <View style={styles.btn}>
                         <Animatable.View ref={circleRef} style={styles.circle} />
                         <Icon type={item.type} name={item.icon} color={focused ? Colors.WHITE : Colors.PRIMARY} />

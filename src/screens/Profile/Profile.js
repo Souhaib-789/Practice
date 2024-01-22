@@ -17,13 +17,13 @@ const Profile = (props) => {
             <Image source={require('../../assets/images/person.jpg')} style={{ width: '100%', height: 200 }} />
             <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
                 <ProfileCard />
-                <FlatList
+                {/* <FlatList
                     data={Array(10)}
                     numColumns={2}
                     renderItem={renderItem}
                     keyExtractor={(item, index) => index.toString()}
                     showsVerticalScrollIndicator={false}
-                />
+                /> */}
             </ScrollView>
         </View>
     )

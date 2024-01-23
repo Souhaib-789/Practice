@@ -7,9 +7,12 @@ import Inbox from "../screens/Inbox/Inbox";
 import Setting from "../screens/Settings/Settings";
 import * as Animatable from 'react-native-animatable';
 import Icon, { IconTypes } from "../components/Icon";
+import { useSelector } from "react-redux";
 
 
 const BottomTabs = () => {
+
+    const theme = useSelector(state => state.GeneralReducer.theme)
 
     const animate1 = { 0: { scale: .5, translateY: 7 }, .92: { translateY: -34 }, 1: { scale: 1.2, translateY: -24 } }
     const animate2 = { 0: { scale: 1.2, translateY: -24 }, 1: { scale: 1, translateY: 7 } }
@@ -51,7 +54,7 @@ const BottomTabs = () => {
                 <Animatable.View ref={viewRef} duration={700} style={styles.container}>
                     <View style={styles.btn}>
                         <Animatable.View ref={circleRef} style={styles.circle} />
-                        <Icon type={item.type} name={item.icon} color={focused ? Colors.WHITE : Colors.PRIMARY} />
+                        <Icon size={20} type={item.type} name={item.icon} color={focused ? Colors.WHITE : Colors.PRIMARY} />
                     </View>
                     <Animatable.Text ref={textRef} style={styles.text}>
                         {item.label}
@@ -66,10 +69,11 @@ const BottomTabs = () => {
         <Tab.Navigator initialRouteName="Home"  >
             {TabArr.map((item, index) => {
                 return (
-                    <Tab.Screen key={index} name={item.route} component={item.component}
+                    <Tab.Screen  key={index} name={item.route} component={item.component}
                         options={{
                             headerShown: false,
                             tabBarShowLabel: false,
+                            // tabBarStyle: {backgroundColor: theme ? Colors?.BLACK : Colors?.WHITE},
                             tabBarButton: (props) => <TabButton {...props} item={item} />
                         }}
                     />
@@ -100,7 +104,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         borderWidth: 4,
         borderColor: Colors.WHITE,
-        backgroundColor: Colors.WHITE,
+     
         justifyContent: 'center',
         alignItems: 'center'
     },

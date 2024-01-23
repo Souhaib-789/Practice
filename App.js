@@ -10,7 +10,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { login, userData } from "./src/redux/Actions/AuthAction";
 import { Snackbar } from "react-native-paper";
 import { Colors } from "./src/config/Colors";
-import { hideAlert, userInfo } from "./src/redux/Actions/GeneralActions";
+import { hideAlert, setTheme, userInfo } from "./src/redux/Actions/GeneralActions";
 
 
 
@@ -20,6 +20,8 @@ const App = () => {
   const loginState = useSelector(state => state.AuthReducer.isLogin)
   const showAlert = useSelector(state => state.GeneralReducer.showAlert)
   const alertMessage = useSelector(state => state.GeneralReducer.alertOptions?.message)
+  const theme = useSelector(state => state.GeneralReducer.theme)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const App = () => {
 
   const checkAuthentication = async () => {
     setTimeout(async () => {
+      checkTheme()
       let user_data = await AsyncStorage.getItem('@userx')
       if (user_data != null) {
         dispatch(login(true))
@@ -39,6 +42,15 @@ const App = () => {
       }
     }, 1000);
   }
+
+  const checkTheme = async () => {
+    let currtheme = await AsyncStorage.getItem('@theme')
+    if (JSON.parse(currtheme) != true) {
+      dispatch(setTheme(false))
+    } else {
+      dispatch(setTheme(true))
+    }
+}
 
   return (
     <SafeAreaProvider>

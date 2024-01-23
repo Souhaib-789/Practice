@@ -31,4 +31,12 @@ const userInfo = payload => {
     payload,
   };
 };
-export { showLoading, hideLoading, showAlert, hideAlert, userInfo };
+
+const setTheme = payload => {
+  return {
+    type: ActionTypes.SET_THEME,
+    payload,
+  };
+};
+
+export { showLoading, hideLoading, showAlert, hideAlert, userInfo , setTheme};

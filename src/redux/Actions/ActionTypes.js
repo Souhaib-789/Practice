@@ -11,7 +11,7 @@ const ActionTypes = {
 
   //App
   USER_INFO: 'USER_INFO',
-
+  SET_THEME: 'SET_THEME'
 };
 
 export default ActionTypes;

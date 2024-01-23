@@ -1,10 +1,12 @@
 import ActionTypes from '../Actions/ActionTypes';
+import { useColorScheme } from 'react-native';
 
 let initialState = {
   showAlert: false,
   alertOptions: null,
   loading: false,
-  userInfo: []
+  userInfo: [],
+  theme: false,
 };
 
 const GeneralReducer = (state = initialState, action) => {
@@ -28,6 +30,10 @@ const GeneralReducer = (state = initialState, action) => {
     case ActionTypes.USER_INFO:
       state = { ...state, userInfo: action.payload };
       break;
+
+      case ActionTypes.SET_THEME:
+        state = {...state, theme: action.payload};
+        break;
 
     default:
       break;

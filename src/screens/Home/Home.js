@@ -46,7 +46,7 @@ const Home = () => {
 
         <View style={[styles.container, { backgroundColor: customizeableColor }]}>
 
-            <TouchableOpacity style={{ borderRadius: 50, padding: 5, backgroundColor: customizeableColor, elevation: 3, position: 'absolute', right: 20, top: 20 }}>
+            <TouchableOpacity onPress={()=> navigation.navigate('Extra')} style={{ borderRadius: 50, padding: 5, backgroundColor: customizeableColor, elevation: 3, position: 'absolute', right: 20, top: 20 }}>
                 <Ionicons name="notifications-outline" size={20} color={customizeableTextColor} />
             </TouchableOpacity>
 

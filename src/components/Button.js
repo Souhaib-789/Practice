@@ -6,7 +6,7 @@ import { Fonts } from "../config/Fonts";
 
 const Button = (props) => {
     return (
-        <TouchableOpacity style={[styles.button , {...props?.style}]} onPress={props?.onPress}>
+        <TouchableOpacity style={[styles.button , {...props?.style}]} onPress={props?.onPress} disabled={props?.disabled}>
             <Text style={[styles.text, {...props?.button_text_style}]}>{props?.title}</Text>
         </TouchableOpacity>
     )

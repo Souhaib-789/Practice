@@ -16,6 +16,7 @@ const Chat = (props) => {
     const [message, setMessage] = useState(null)
     const [loader, setLoader] = useState(false)
     const [refreshing, setRefreshing] = useState(false)
+    console.log('routeData',routeData)
 
     const [ChatList, setChatList] = useState([
         {

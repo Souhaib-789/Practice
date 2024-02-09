@@ -14,7 +14,7 @@ const Home = () => {
     const isDarkTheme = useSelector(state => state.GeneralReducer.theme)
     const customizeableColor = isDarkTheme ? Colors?.BLACK : Colors.WHITE
     const customizeableTextColor = isDarkTheme ? Colors?.WHITE : Colors.BLACK
-
+console.log('userData',userData)
     const renderSuggestionItem = ({ item, index }) => {
         return (
             <View style={{ alignItems: 'center', borderRadius: 12, backgroundColor: customizeableColor, elevation: 5, width: 130, height: 160, marginHorizontal: 15, marginVertical: 10, paddingTop: 15, borderColor: Colors?.LIGHT_GREY, borderWidth: isDarkTheme ? 1 : 0 }}>

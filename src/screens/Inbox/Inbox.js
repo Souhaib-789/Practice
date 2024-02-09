@@ -22,7 +22,7 @@ const Inbox = () => {
         };
     });
 
-
+console.log('DATA',DATA);
     // const SPACING = 20;
     // const AVATAR_SIZE = 45;   
     // const INTEX_SIZE = 70 + SPACING * 3;

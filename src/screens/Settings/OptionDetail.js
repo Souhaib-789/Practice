@@ -19,7 +19,7 @@ const OptionDetail = () => {
         }
     ]
     const [selected, setSelected] = useState(null)
-
+console.log('selected',selected);
     const renderItem = ({ item }) => (
         <TouchableOpacity
             onPress={() => {
